@@ -433,7 +433,7 @@ def build_model_property(
         nullable=data.nullable,
         required=required,
         name=name,
-        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
         example=data.example,
     )
     if class_info.name in schemas.classes_by_name:

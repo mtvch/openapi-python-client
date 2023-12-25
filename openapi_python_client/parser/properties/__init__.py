@@ -303,7 +303,7 @@ def _string_based_property(
 ) -> Union[StringProperty, DateProperty, DateTimeProperty, FileProperty]:
     """Construct a Property from the type "string" """
     string_format = data.schema_format
-    python_name = utils.PythonIdentifier(value=name, prefix=config.field_prefix)
+    python_name = utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False)
     if string_format == "date-time":
         return DateTimeProperty(
             name=name,
@@ -395,7 +395,7 @@ def build_enum_property(
                 required=required,
                 nullable=False,
                 default="None",
-                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
                 description=None,
                 example=None,
             ),
@@ -423,7 +423,7 @@ def build_enum_property(
         values=values,
         value_type=value_type,
         default=None,
-        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
         description=data.description,
         example=data.example,
     )
@@ -503,7 +503,7 @@ def build_union_property(
             default=default,
             inner_properties=sub_properties,
             nullable=data.nullable,
-            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
             description=data.description,
             example=data.example,
         ),
@@ -559,7 +559,7 @@ def build_list_property(
             default=None,
             inner_property=inner_prop,
             nullable=data.nullable,
-            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
             description=data.description,
             example=data.example,
         ),
@@ -587,7 +587,7 @@ def _property_from_ref(
         existing,
         required=required,
         name=name,
-        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+        python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
     )
     if parent:
         prop = evolve(prop, nullable=parent.nullable)
@@ -648,7 +648,7 @@ def _property_from_data(  # noqa: PLR0911
                 default=convert("float", data.default),
                 required=required,
                 nullable=data.nullable,
-                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
                 description=data.description,
                 example=data.example,
             ),
@@ -661,7 +661,7 @@ def _property_from_data(  # noqa: PLR0911
                 default=convert("int", data.default),
                 required=required,
                 nullable=data.nullable,
-                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
                 description=data.description,
                 example=data.example,
             ),
@@ -674,7 +674,7 @@ def _property_from_data(  # noqa: PLR0911
                 required=required,
                 default=convert("bool", data.default),
                 nullable=data.nullable,
-                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+                python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
                 description=data.description,
                 example=data.example,
             ),
@@ -708,7 +708,7 @@ def _property_from_data(  # noqa: PLR0911
             required=required,
             nullable=False,
             default=None,
-            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix),
+            python_name=utils.PythonIdentifier(value=name, prefix=config.field_prefix, use_snake_case=False),
             description=data.description,
             example=data.example,
         ),
